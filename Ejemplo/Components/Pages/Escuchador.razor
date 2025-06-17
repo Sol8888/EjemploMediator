@@ -1,0 +1,34 @@
+﻿@implements IDisposable
+@inject MediatorService Mediador
+
+<h3>Escuchador</h3>
+
+
+@if (!string.IsNullOrEmpty(Mensaje))
+{
+    <div class="alert alert-info mt-2">
+        @Mensaje
+    </div>
+}
+
+@code {
+
+    private string Mensaje = "";
+
+    protected override void OnInitialized()
+    {
+        Mediador.OnNotificar += MostrarMensaje;
+    }
+
+    void MostrarMensaje(string mensaje)
+    {
+        Mensaje = mensaje;
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        Mediador.OnNotificar -= MostrarMensaje;
+    }
+
+}

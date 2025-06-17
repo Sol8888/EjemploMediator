@@ -1,0 +1,15 @@
+﻿@inject MediatorService Mediador
+
+<h3>Notificador</h3>
+
+<button class="btn btn-primary" @onclick="EnviarMensaje">Notificar</button>
+
+
+@code {
+
+    void EnviarMensaje()
+    {
+        Mediador.Notificar("Hola Camila, este es un mensaje desde el botón.");
+    }
+
+}
