@@ -2,14 +2,21 @@
 
 <h3>Notificador</h3>
 
-<button class="btn btn-primary" @onclick="EnviarMensaje">Notificar</button>
+<div class="mb-3">
+    <input type="text" class="form-control" @bind="mensaje" placeholder="Escribe un mensaje..." />
+</div>
 
+<button class="btn btn-success" @onclick="EnviarMensaje">Enviar Mensaje</button>
 
 @code {
+    private string mensaje = string.Empty;
 
     void EnviarMensaje()
     {
-        Mediador.Notificar("Hola Camila, este es un mensaje desde el botón.");
+        if (!string.IsNullOrWhiteSpace(mensaje))
+        {
+            Mediador.Notificar(mensaje);
+            mensaje = string.Empty;
+        }
     }
-
 }
