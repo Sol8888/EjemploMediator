@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
-builder.Services.AddSingleton<MediatorService>();
+builder.Services.AddSingleton<Ejemplo.Services.MediatorService>();
 
 var app = builder.Build();
 

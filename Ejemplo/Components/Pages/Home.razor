@@ -1,10 +1,20 @@
 ﻿@using Ejemplo.Components.Pages
+@rendermode InteractiveServer
 
 @page "/"
 
 
-<h3>Ejemplo de Mediator en Blazor</h3>
+<h3>Ejemplo de Mediador con 3 componentes</h3>
 
+<div class="row">
+    <div class="col-md-4">
+        <EmisorA />
+    </div>
+    <div class="col-md-4">
+        <EmisorB />
+    </div>
+    <div class="col-md-4">
+        <Receptor />
+    </div>
+</div>
 
-<Notificador />
-<Escuchador />

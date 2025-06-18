@@ -1,0 +1,19 @@
+﻿@inject Ejemplo.Services.MediatorService Mediador
+
+<h5>Emisor B</h5>
+
+<input class="form-control" @bind="mensaje" placeholder="Mensaje desde B" />
+<button class="btn btn-warning mt-2" @onclick="Enviar">Enviar desde B</button>
+
+@code {
+    private string mensaje = "";
+
+    void Enviar()
+    {
+        if (!string.IsNullOrWhiteSpace(mensaje))
+        {
+            Mediador.Enviar($"[B] {mensaje}");
+            mensaje = "";
+        }
+    }
+}

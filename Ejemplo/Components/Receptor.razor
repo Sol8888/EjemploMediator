@@ -1,0 +1,38 @@
+﻿@implements IDisposable
+@inject Ejemplo.Services.MediatorService Mediador
+
+<h5>Receptor</h5>
+
+@if (Mensajes.Any())
+{
+    <ul class="list-group">
+        @foreach (var msg in Mensajes)
+        {
+            <li class="list-group-item">@msg</li>
+        }
+    </ul>
+}
+else
+{
+    <p class="text-muted">Sin mensajes todavía...</p>
+}
+
+@code {
+    private List<string> Mensajes = new();
+
+    protected override void OnInitialized()
+    {
+        Mediador.OnMensaje += Recibir;
+    }
+
+    void Recibir(string mensaje)
+    {
+        Mensajes.Add(mensaje);
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        Mediador.OnMensaje -= Recibir;
+    }
+}
